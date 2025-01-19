@@ -2,16 +2,40 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { login } from "@/http/api"
+import { useMutation } from "@tanstack/react-query"
+import { useRef } from "react"
 import { Link } from "react-router"
 
 function LoginPage() {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: () => {
+      return alert('Login Successfully..!')
+    },
+  })
+
+  const handleLoginSubmit = () => {    
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (!email || !password) {
+      return alert("Please Enter email and password...")
+    }
+
+    mutation.mutate({ email, password });
+  }
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
       <div className="w-full max-w-sm md:max-w-3xl">
         <div className="flex flex-col gap-6">
           <Card className="overflow-hidden">
             <CardContent className="grid p-0 md:grid-cols-2">
-              <form className="p-6 md:p-8">
+              {/* <form className="p-6 md:p-8"> */}
+              <div className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center text-center">
                     <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -22,6 +46,7 @@ function LoginPage() {
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
+                      ref={emailRef}
                       id="email"
                       type="email"
                       placeholder="m@example.com"
@@ -38,9 +63,9 @@ function LoginPage() {
                         Forgot your password?
                       </a>
                     </div>
-                    <Input id="password" type="password" required />
+                    <Input ref={passwordRef} id="password" type="password" required />
                   </div>
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full" onClick={handleLoginSubmit}>
                     Login
                   </Button>
                   <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
@@ -84,7 +109,8 @@ function LoginPage() {
                     </Link>
                   </div>
                 </div>
-              </form>
+              </div>
+              {/* </form> */}
               <div className="relative hidden bg-muted md:block">
                 <img
                   src="https://ui.shadcn.com/placeholder.svg"
