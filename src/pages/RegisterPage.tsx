@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router"
 function RegisterPage() {
   const setToken = useTokenStore((state) => state.setToken)
   const navigate = useNavigate();
-
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -20,7 +19,7 @@ function RegisterPage() {
   const mutation = useMutation({
     mutationFn: register,
     onSuccess: (response) => {
-      setToken(response.data.token)
+      setToken(response.data.accessToken)
       navigate('/admin/dashboard')
     },
   })
