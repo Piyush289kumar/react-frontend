@@ -3,13 +3,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { register } from "@/http/api"
+import useTokenStore from "@/store"
 import { useMutation } from "@tanstack/react-query"
 import { LoaderCircle } from "lucide-react"
 import { useRef } from "react"
 import { Link, useNavigate } from "react-router"
 
 function RegisterPage() {
-
+  const setToken = useTokenStore((state) => state.setToken)
   const navigate = useNavigate();
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -18,7 +19,8 @@ function RegisterPage() {
 
   const mutation = useMutation({
     mutationFn: register,
-    onSuccess: () => {
+    onSuccess: (response) => {
+      setToken(response.data.token)
       navigate('/admin/dashboard')
     },
   })
