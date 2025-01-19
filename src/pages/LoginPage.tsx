@@ -5,20 +5,22 @@ import { Label } from "@/components/ui/label"
 import { login } from "@/http/api"
 import { useMutation } from "@tanstack/react-query"
 import { useRef } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 function LoginPage() {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const navigate = useNavigate();
+
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: () => {
-      return alert('Login Successfully..!')
+      navigate('/admin/dashboard')
     },
   })
 
-  const handleLoginSubmit = () => {    
+  const handleLoginSubmit = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
