@@ -17,7 +17,8 @@ import useTokenStore from "@/store"
 import { Navigate, Outlet } from "react-router"
 
 function AdminLayout() {
-    const token = useTokenStore((state) => state.token);
+    const { token } = useTokenStore((state) => state);
+
     if (!token) {
         return <Navigate to={'/auth/login'} replace />
     }

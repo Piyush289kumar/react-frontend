@@ -29,6 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import useTokenStore from "@/store"
 
 export function NavUser({
   user,
@@ -40,6 +41,13 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+
+  const { setToken } = useTokenStore((state) => state);
+
+  const handleLogout = () => {
+    console.log('Log Out');
+    setToken('');
+  }
 
   return (
     <SidebarMenu>
@@ -102,7 +110,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>
