@@ -2,26 +2,61 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router"
+import { register } from "@/http/api"
+import { useMutation } from "@tanstack/react-query"
+import { LoaderCircle } from "lucide-react"
+import { useRef } from "react"
+import { Link, useNavigate } from "react-router"
 
 function RegisterPage() {
+
+  const navigate = useNavigate();
+
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const mutation = useMutation({
+    mutationFn: register,
+    onSuccess: () => {
+      navigate('/admin/dashboard')
+    },
+  })
+
+  const handleRegisterSubmit = () => {
+    const name = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (!name || !email || !password) {
+      return alert("Please Enter name, email and password...")
+    }
+
+    mutation.mutate({ name, email, password });
+  }
+
+
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
       <div className="w-full max-w-sm md:max-w-3xl">
         <div className="flex flex-col gap-6">
           <Card className="overflow-hidden">
             <CardContent className="grid p-0 md:grid-cols-2">
-              <form className="p-6 md:p-8">
+              {/* <form className="p-6 md:p-8"> */}
+              <div className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center text-center">
                     <h1 className="text-2xl font-bold">Join {import.meta.env.VITE_APP_NAME}</h1>
                     <p className="text-balance text-muted-foreground">
                       Create your account to get started with our services.
+                      <br />
+                      {mutation.isError && <span className="text-red-600 text-sm">{mutation.error.message}</span>}
                     </p>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="name">Name</Label>
                     <Input
+                      ref={nameRef}
                       id="name"
                       type="text"
                       placeholder="Piyush Kumar Raikwar"
@@ -31,6 +66,7 @@ function RegisterPage() {
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
+                      ref={emailRef}
                       id="email"
                       type="email"
                       placeholder="m@example.com"
@@ -40,17 +76,17 @@ function RegisterPage() {
                   <div className="grid gap-2">
                     <div className="flex items-center">
                       <Label htmlFor="password">Password</Label>
-                      <a
-                        href="#"
+                      <Link
+                        to={''}
                         className="ml-auto text-sm underline-offset-2 hover:underline"
                       >
                         Forgot your password?
-                      </a>
+                      </Link>
                     </div>
-                    <Input id="password" type="password" required />
+                    <Input ref={passwordRef} id="password" type="password" required />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Register
+                  <Button type="submit" className="w-full" onClick={handleRegisterSubmit} disabled={mutation.isPending}>
+                    <span>{mutation.isPending ? <LoaderCircle className="animate-spin" /> : "Register"}</span>
                   </Button>
                   <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                     <span className="relative z-10 bg-background px-2 text-muted-foreground">
@@ -93,7 +129,8 @@ function RegisterPage() {
                     </Link>
                   </div>
                 </div>
-              </form>
+              </div>
+              {/* </form> */}
               <div className="relative hidden bg-muted md:block">
                 <img
                   src="https://ui.shadcn.com/placeholder.svg"

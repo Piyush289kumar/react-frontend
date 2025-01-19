@@ -44,6 +44,8 @@ function LoginPage() {
                     <h1 className="text-2xl font-bold">Welcome back</h1>
                     <p className="text-balance text-muted-foreground">
                       Login to your {import.meta.env.VITE_APP_NAME} account
+                      <br />
+                      {mutation.isError && <span className="text-red-600 text-sm">{mutation.error.message}</span>}
                     </p>
                   </div>
                   <div className="grid gap-2">
