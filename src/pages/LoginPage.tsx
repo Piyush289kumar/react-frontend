@@ -16,7 +16,7 @@ function LoginPage() {
                   <div className="flex flex-col items-center text-center">
                     <h1 className="text-2xl font-bold">Welcome back</h1>
                     <p className="text-balance text-muted-foreground">
-                      Login to your Acme Inc account
+                      Login to your {import.meta.env.VITE_APP_NAME} account
                     </p>
                   </div>
                   <div className="grid gap-2">
@@ -87,7 +87,7 @@ function LoginPage() {
               </form>
               <div className="relative hidden bg-muted md:block">
                 <img
-                  src="/placeholder.svg"
+                  src="https://ui.shadcn.com/placeholder.svg"
                   alt="Image"
                   className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                 />

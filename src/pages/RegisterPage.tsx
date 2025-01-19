@@ -14,7 +14,7 @@ function RegisterPage() {
               <form className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center text-center">
-                    <h1 className="text-2xl font-bold">Join Dev Vault</h1>
+                    <h1 className="text-2xl font-bold">Join {import.meta.env.VITE_APP_NAME}</h1>
                     <p className="text-balance text-muted-foreground">
                       Create your account to get started with our services.
                     </p>
@@ -96,7 +96,7 @@ function RegisterPage() {
               </form>
               <div className="relative hidden bg-muted md:block">
                 <img
-                  src="/placeholder.svg"
+                  src="https://ui.shadcn.com/placeholder.svg"
                   alt="Image"
                   className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                 />
