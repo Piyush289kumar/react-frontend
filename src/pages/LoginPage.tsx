@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { login } from "@/http/api"
 import { useMutation } from "@tanstack/react-query"
+import { LoaderCircle } from "lucide-react"
 import { useRef } from "react"
 import { Link, useNavigate } from "react-router"
 
@@ -67,8 +68,8 @@ function LoginPage() {
                     </div>
                     <Input ref={passwordRef} id="password" type="password" required />
                   </div>
-                  <Button type="submit" className="w-full" onClick={handleLoginSubmit}>
-                    Login
+                  <Button type="submit" className="w-full" onClick={handleLoginSubmit} disabled={mutation.isPending}>
+                    <span>{mutation.isPending ? <LoaderCircle className="animate-spin" /> : "Login"}</span>
                   </Button>
                   <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                     <span className="relative z-10 bg-background px-2 text-muted-foreground">
