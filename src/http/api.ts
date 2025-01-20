@@ -7,7 +7,7 @@ const api = axios.create({
 });
 
 export const login = async (data: { email: string; password: string }) => {
-  return api.post("/api/users/login", data);
+  return await api.post("/api/users/login", data);
 };
 
 export const register = async (data: {
@@ -15,5 +15,9 @@ export const register = async (data: {
   email: string;
   password: string;
 }) => {
-  return api.post("/api/users/register", data);
+  return await api.post("/api/users/register", data);
+};
+
+export const getAllBooks = async () => {
+  return await api.get("/api/books");
 };
