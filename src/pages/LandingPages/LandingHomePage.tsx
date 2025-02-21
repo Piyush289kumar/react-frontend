@@ -21,7 +21,6 @@ function LandingHomePage() {
 
                 </div>
             </div>
-
         </div>
     )
 }
