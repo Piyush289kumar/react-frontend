@@ -1,6 +1,4 @@
 import { Play } from 'lucide-react';
-import Vector from '../assets/kiornos_assets/Vector.svg';
-import speechBubbles from '../assets/kiornos_assets/speechBubbles.png';
 
 export function WatchReel() {
     return (
