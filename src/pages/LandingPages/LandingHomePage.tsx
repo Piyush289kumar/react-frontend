@@ -1,6 +1,7 @@
 import { WatchReel } from '@/components/landing/watch-reel';
 import HomeHeroImg from '../../assets/kiornos_assets/HomeHeroImg.png';
 import { SpecificationBlock } from '@/components/landing/specification-blocks';
+import { ShowcaseCards } from '@/components/landing/showcase-cards';
 
 function LandingHomePage() {
     return (
@@ -20,6 +21,7 @@ function LandingHomePage() {
             </div>
             <WatchReel />
             <SpecificationBlock />
+            <ShowcaseCards/>
         </div>
     )
 }
