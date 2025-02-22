@@ -1,11 +1,12 @@
 import { WatchReel } from '@/components/landing/watch-reel';
 import HomeHeroImg from '../../assets/kiornos_assets/HomeHeroImg.png';
+import { SpecificationBlock } from '@/components/landing/specification-blocks';
 
 function LandingHomePage() {
     return (
         <div className="">
-            <div className="relative">                
-                <img src={HomeHeroImg} alt="Hero Home Image" className="w-full" />            
+            <div className="relative">
+                <img src={HomeHeroImg} alt="Hero Home Image" className="w-full" />
                 <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white via-white/70 to-transparent backdrop-blur-lg"></div>
                 <div className="text-center text-zinc-950 -mt-52 flex flex-col justify- gap-y-5">
                     <h1 className="text-8xl font-bold">Create Different.</h1>
@@ -17,7 +18,8 @@ function LandingHomePage() {
 
                 </div>
             </div>
-            <WatchReel/>
+            <WatchReel />
+            <SpecificationBlock />
         </div>
     )
 }
