@@ -9,10 +9,10 @@ export function ShowcaseCards() {
   return (
     <>
       <section>
-        <div className="flex flex-col items-center px-12 justify-center gap-5 my-32">
+        <div className="flex flex-col items-center px-12 justify-center gap-5 mt-32 mb-0">
           <h2 className="text-7xl font-bold">Innovate. Inspire. Transform.</h2>
 
-          <div className="my-24">
+          <div className="my-28">
             <div className="flex flex-wrap justify-center gap-8">
               {blocksImg.map((blockImg, idx) => (
                 <div key={idx} className="relative">
@@ -24,7 +24,7 @@ export function ShowcaseCards() {
               ))}
             </div>
 
-            <div className="text-center py-12">
+            <div className="text-center pt-12">
               <a href="" className="text-sm text-center text-[#007AFF]">
                 Know More
               </a>
