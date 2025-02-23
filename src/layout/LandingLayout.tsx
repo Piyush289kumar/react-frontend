@@ -3,8 +3,7 @@ import { Outlet } from "react-router";
 
 function LandingLayout() {
   return (
-
-    <div className="w-full h-screen px-7 bg-white">
+    <div className="w-full h-screen bg-white">
       <LandingNavBar />
       <Outlet />
     </div>
