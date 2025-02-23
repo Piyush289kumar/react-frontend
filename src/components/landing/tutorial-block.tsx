@@ -1,5 +1,3 @@
-import BlockF from "@/assets/kiornos_assets/BlockF.png";
-import Ellipes3 from "@/assets/kiornos_assets/Ellipse3.png";
 import Rectangle62 from "@/assets/kiornos_assets/Rectangle62.png";
 import GlobalNetwork from "@/assets/kiornos_assets/global-network.png";
 import Technology from "@/assets/kiornos_assets/technology.png";
